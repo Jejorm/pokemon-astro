@@ -1,48 +1,28 @@
-# Astro Starter Kit: Basics
+## Pokémon Website
 
-```sh
-pnpm create astro@latest -- --template basics
+A clean and responsive Pokémon website built with **Astro**, **Tailwind CSS**, and **Solid.js**.  
+It fetches live data from the [PokeAPI](https://pokeapi.co/), allowing users to explore a full list of Pokémon with **pagination** for smooth navigation. Users can also **bookmark** their favorite Pokémon, with bookmarks stored in **local storage** for persistence.
+
+### ✨ Features
+
+- Live Pokémon list fetched from [PokeAPI](https://pokeapi.co/)
+- Pagination to easily navigate between pages
+- Bookmark functionality using **Solid.js** and local storage
+- Built with **Astro** for fast performance and modern web standards
+- Styled with **Tailwind CSS** for a clean, responsive design
+
+### 🚀 Tech Stack
+
+- [Astro](https://astro.build)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Solid.js](https://www.solidjs.com)
+- [PokeAPI](https://pokeapi.co)
+
+### 📦 Installation
+
+```bash
+git clone <your-repo-url>
+cd <your-project-folder>
+pnpm install
+pnpm dev
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
