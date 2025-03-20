@@ -21,8 +21,8 @@ It fetches live data from the [PokeAPI](https://pokeapi.co/), allowing users to 
 ### 📦 Installation
 
 ```bash
-git clone <your-repo-url>
-cd <your-project-folder>
+git clone https://github.com/Jejorm/pokemon-astro.git
+cd pokemon-astro
 pnpm install
 pnpm dev
 ```
