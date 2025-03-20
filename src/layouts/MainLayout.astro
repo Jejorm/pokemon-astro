@@ -25,10 +25,25 @@ const {
     <!-- SEO -->
     <meta name='description' content={description} />
     <meta name='author' content='Jeremy Orellana' />
-    <!-- OG -->
+    <!-- Open Graph -->
     <meta property='og:title' content={title} />
     <meta property='og:description' content={description} />
+    <meta property='og:url' content='https://your-site-url.com' />
+    <meta property='og:type' content='website' />
+    <meta property='og:site_name' content='Pokémon Website' />
     <meta property='og:image' content={image} />
+
+    <!-- Twitter Card -->
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta
+      name='twitter:title'
+      content='Pokémon Website — Browse & Bookmark Your Favorites'
+    />
+    <meta
+      name='twitter:description'
+      content='A fast and responsive Pokémon app built with Astro, Tailwind CSS, and Solid.js. Explore live Pokémon data from PokeAPI, paginate easily, and bookmark favorites.'
+    />
+    <meta name='twitter:image' content={image} />
     <title>{title}</title>
     <ClientRouter />
   </head>
