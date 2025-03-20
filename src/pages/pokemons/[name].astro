@@ -1,8 +1,10 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import type { PokemonListResponse } from '@interfaces/pokemon-list.response'
+import { Icon } from 'astro-icon/components'
 import MainLayout from '@layouts/MainLayout.astro'
 import PokemonCard from '@components/pokemons/PokemonCard.astro'
+import Title from '@components/shared/Title.astro'
 
 export const getStaticPaths = (async () => {
   const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
@@ -31,9 +33,23 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
   image={imageSrc}
 >
   <section class='mt-10 mx-10 flex flex-col justify-center items-center'>
-    <div>
-      <a class='text-blue-500 hover:underline' href='/'>Return</a>
-      <h1 class='text-5xl capitalize'>{name}</h1>
+    <div class='flex flex-row'>
+      <div>
+        <button class='text-blue-500' onclick='window.history.back()'
+          >Return</button
+        >
+        <Title>{name}</Title>
+      </div>
+
+      <button
+        id='btn-favorite'
+        class='ml-4 hover:animate-pulse'
+        data-name={name}
+        data-id={pokemonId}
+      >
+        <Icon data-outline name='heart-outline' size={50} />
+        <Icon data-filled class='hidden' name='heart-filled' size={50} />
+      </button>
     </div>
 
     <PokemonCard name={name} url={url} isBig />
@@ -44,3 +60,67 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
     </audio>
   </section>
 </MainLayout>
+
+<script>
+  import type { FavoritePokemon } from '@interfaces/favorite-pokemon'
+
+  const handlePageLoad = () => {
+    const favoriteButton = document.querySelector(
+      '#btn-favorite'
+    ) as HTMLButtonElement
+
+    if (!favoriteButton) return
+
+    const name = favoriteButton.dataset.name ?? ''
+    const id = favoriteButton.dataset.id ?? ''
+
+    const heartOutline = favoriteButton.querySelector(
+      '[data-outline]'
+    ) as HTMLElement
+
+    const heartFilled = favoriteButton.querySelector(
+      '[data-filled]'
+    ) as HTMLElement
+
+    let favoritesPokemon: FavoritePokemon[] = JSON.parse(
+      localStorage.getItem('favorites') ?? '[]'
+    )
+
+    const isFavorite = favoritesPokemon.some(
+      (favorite) => favorite.name === name
+    )
+
+    if (isFavorite) {
+      heartOutline.classList.add('hidden')
+      heartFilled.classList.remove('hidden')
+    }
+
+    const toggleFavorite = () => {
+      const isFavorite = favoritesPokemon.some(
+        (favorite) => favorite.name === name
+      )
+
+      if (isFavorite) {
+        favoritesPokemon = favoritesPokemon.filter(
+          (favorite) => favorite.name !== name
+        )
+      } else {
+        favoritesPokemon.push({
+          name,
+          id: +id,
+        })
+      }
+
+      localStorage.setItem('favorites', JSON.stringify(favoritesPokemon))
+    }
+
+    favoriteButton.addEventListener('click', () => {
+      heartOutline.classList.toggle('hidden')
+      heartFilled.classList.toggle('hidden')
+
+      toggleFavorite()
+    })
+  }
+
+  document.addEventListener('astro:page-load', handlePageLoad)
+</script>
